@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0e0e0;
+            color: #256d7b;
+            padding: 0px;
+            margin: 0px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            background-color: #4CAF50;
+            padding: 20px;
+        }
+        .button {
+            background-color: #256d7b;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 60px);
+        }
+        input {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="{{ url_for('menu') }}" class="button">Back</a>
+        <button type="submit" form="product-form" class="button">Submit</button>
+    </div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form id="product-form" action="insert-product" method="post">
+        <input type="text" name="product_name" placeholder="Product Name" required>
+        <input type="number" name="unit_price" placeholder="Unit Price" step="0.01" required>
+    </form>
+</body>
+</html>

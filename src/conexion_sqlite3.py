@@ -9,6 +9,14 @@ def start_Db():
         pass VARCHAR(255) NOT NULL
     );
     """
+    CREATE_TABLE_PRODUCTS = """
+    CREATE TABLE IF NOT EXISTS products (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        product VARCHAR(255) NOT NULL,
+        price REAL NOT NULL
+    );
+    """
+
     INSERT_USER1 = """
     INSERT INTO users (id, name, email, pass) VALUES
     (1, 'Juan', 'usuario1@ejemplo.com', '123') ON CONFLICT DO NOTHING;
@@ -26,8 +34,11 @@ def start_Db():
     conn=sqlite3.connect("db.sqlite3")
     cursor=conn.cursor()
     cursor.execute(CREATE_TABLE_USERS)
+    cursor.execute(CREATE_TABLE_PRODUCTS)
     cursor.execute(INSERT_USER1)
     cursor.execute(INSERT_USER2)
     cursor.execute(INSERT_USER3)
+
+
     conn.commit()
     conn.close()

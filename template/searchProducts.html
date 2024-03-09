@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0e0e0;
+            color: #256d7b;
+            padding: 0px;
+            margin: 0px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            background-color: #4CAF50;
+            padding: 20px;
+        }
+        .button {
+            background-color: #256d7b;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .search-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .search-container input[type="text"] {
+            padding: 10px;
+            font-size: 17px;
+            border: none;
+            margin-right: 10px;
+        }
+        .search-container button {
+            padding: 10px;
+            font-size: 17px;
+            border: none;
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color:#256d7b;
+            color: #fff;
+            text-align: center;
+        }
+        td {
+            text-align: left;
+            color: #000;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="{{ url_for('menu') }}" class="button">Back</a>
+    </div>
+    <div class="search-container">
+        <form action="/search-product" method="post">
+            <input type="text" placeholder="Buscar producto..." name="product_name">
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre del producto</th>
+            <th>Precio unitario</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product[0] }}</td>
+            <td>{{ product[1] }}</td>
+            <td>{{ product[2] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

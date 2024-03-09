@@ -7,6 +7,7 @@
     <style>
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -17,11 +18,29 @@
             text-align: center;
             font-size: 24px;
         }
+        .redirect-button {
+            display: block;
+            width: 200px;
+            height: 50px;
+            margin: 20px auto;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 10px;
+            transition: all 0.5s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .redirect-button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
     <div class="welcome-message">
         You have entered the system
     </div>
+    <a href="{{ url_for('menu') }}" class="redirect-button">Let's go</a>
 </body>
 </html>
